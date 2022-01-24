@@ -46,7 +46,7 @@ const totalcarrito = []
 
 
 
-
+let totalGlobal = 0
 let contador = 0
 
 
@@ -101,9 +101,16 @@ $(document).ready(function(){
                                                 `
                         )
                         
+                        
                     }
                     
-                    
+                    $("#endShop").append(
+                        `
+                        <div>              
+                        <p> Total a pagar: $${totalGlobal} </p>
+                        </div>
+                        `
+                     ) 
             }
            
 
@@ -113,19 +120,18 @@ $(document).ready(function(){
 
 
 
- // Boton de finalizar compra
+// Boton limpiar carrito
             if(contador ==0){
-                if(e.target.classList.contains("finCompra")){
-                    $("#endShop").append(
-                        `
-                        <div>              
-                        <p> Total a pagar: $${totalGlobal} </p>
-                        </div>
-                        `
-                     )
+                if(e.target.classList.contains("limpiarcarrito")){
+                    $("#tienda").empty()
+                    carrito= []
+                   
+
+                    
+                    
                     }
 
-                    contador ++
+                    
                     
             
                     
@@ -139,7 +145,7 @@ $(document).ready(function(){
                     console.log(carritoComprado);
                 
                 
-            }  
+            }   
         }
         
         
@@ -148,11 +154,11 @@ $(document).ready(function(){
 )
 
 
-
+console.log(totalcarrito);
 
 
 function comprar(){
     const reducer = (x, y) => x + y
-    let totalGlobal = totalcarrito.reduce(reducer)
+    totalGlobal = totalcarrito.reduce(reducer)
     console.log(totalGlobal);
 }
